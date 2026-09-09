@@ -2,3 +2,6 @@
 @source "../../app/**/*.php";
 @source "../**/*.blade.php";
 @source "../**/*.js";
+
+
+.hllo {color: red;padding: 20px;border: 1px solid #000;}
