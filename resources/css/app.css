@@ -2,3 +2,25 @@
 @source "../../app/**/*.php";
 @source "../**/*.blade.php";
 @source "../**/*.js";
+
+
+:root {
+    --blue: #1e90ff;
+    --white: #ffffff;
+    --placeholdercolor: currentColor;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'InterTight-Regular';
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: red;
+}
