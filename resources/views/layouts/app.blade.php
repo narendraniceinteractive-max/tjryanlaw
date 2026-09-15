@@ -8,6 +8,7 @@
     @php(wp_head())
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
   </head>
 <body <?php body_class(); ?>>
 
