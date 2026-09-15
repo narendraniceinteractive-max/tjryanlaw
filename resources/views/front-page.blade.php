@@ -117,54 +117,120 @@ Template Post Type: page
     </div>
 </div>
 
+<?php
+$practice_area_heading = get_field('home_practice_area_heading');
+$practice_area_bg      = get_field('home_practice_area_bg_image');
 
+$bg_image_url = '';
 
-<div class="hm-practice-area-sec">
-    <div class="container">
-        <div class="hm-pract-blk">
-            <h2 class="text-heading"> Personal Injury Cases <br> We Handle in Orange County </h2>
-            <?php if (have_rows('home_practice_area_content')) : ?>
-                <div class="home-practice-area-list">
-                    <?php while (have_rows('home_practice_area_content')) : the_row(); ?>
-                        <?php
-                        $button = get_sub_field('home_practice_area_button');
-                        $button_url    = $button['url'] ?? '#';
-                        $button_title  = $button['title'] ?? '';
-                        $button_target = $button['target'] ?? '_self';
-                        $practice_class = get_sub_field('practice_area_class');
-                        $practice_image = get_sub_field('practice_area_image');
-                        $image_url = '';
+if (is_array($practice_area_bg)) {
+    $bg_image_url = $practice_area_bg['url'] ?? '';
+} elseif (is_string($practice_area_bg)) {
+    $bg_image_url = $practice_area_bg;
+}
+?>
 
-                        if (is_array($practice_image)) {
-                            $image_url = $practice_image['url'] ?? '';
-                        } elseif (is_string($practice_image)) {
-                            $image_url = $practice_image;
-                        }
-                        ?>
-                        <div class="home-practice-area-item <?php echo esc_attr($practice_class); ?>">
-                            <?php if ($image_url) : ?>
-                                <div class="practice-img">
-                                    <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_sub_field('home_practice_area_title')); ?>" >
-                                </div>
-                            <?php endif; ?>
-                            <a href="<?php echo esc_url($button_url); ?>" target="<?php echo esc_attr($button_target); ?>" class="practice-item-link" >
-                                <h3> <?php echo esc_html(get_sub_field('home_practice_area_title')); ?> </h3>
-                                <p class="practice-desc-short"> <?php echo esc_html( wp_trim_words( get_sub_field('home_practice_area_description'), 15, ' [...]' ) ); ?> </p>
-                                <p class="practice-desc-hover"> <?php echo esc_html( wp_trim_words( get_sub_field('home_practice_area_description'), 30, ' [...]' ) ); ?> </p>
-                            </a>
-                            <?php if ($button_title) : ?>
-                                <a href="<?php echo esc_url($button_url); ?>" target="<?php echo esc_attr($button_target); ?>" class="practice-link" > <?php echo esc_html($button_title); ?> </a>
-                            <?php endif; ?>
-                        </div>
-                    <?php endwhile; ?>
-                </div>
-                <div class="hm-pract-btn">
-                    <a href="<?php echo esc_url(home_url('/practice-areas/')); ?>" class="cmn-btn" > View All Practice Areas </a>
-                </div>
+<?php if ($practice_area_heading || $bg_image_url) : ?>
+
+    <div class="hm-practice-area-sec"
+        <?php if ($bg_image_url) : ?>
+            style="background-image: url('<?php echo esc_url($bg_image_url); ?>');"
+        <?php endif; ?>
+    >
+
+        <div class="container">
+
+            <?php if ($practice_area_heading) : ?>
+                <h2 class="section-heading">
+                    <?php echo wp_kses_post($practice_area_heading); ?>
+                </h2>
             <?php endif; ?>
+
+            <div class="hm-pract-blk">
+
+                <?php if (have_rows('home_practice_area_content')) : ?>
+
+                    <div class="home-practice-area-list">
+
+                        <?php while (have_rows('home_practice_area_content')) : the_row(); ?>
+
+                            <?php
+                            $button = get_sub_field('home_practice_area_button');
+
+                            $button_url    = $button['url'] ?? '#';
+                            $button_title  = $button['title'] ?? '';
+                            $button_target = $button['target'] ?? '_self';
+
+                            $practice_class = get_sub_field('practice_area_class');
+                            $practice_image = get_sub_field('practice_area_image');
+
+                            $image_url = '';
+
+                            if (is_array($practice_image)) {
+                                $image_url = $practice_image['url'] ?? '';
+                            } elseif (is_string($practice_image)) {
+                                $image_url = $practice_image;
+                            }
+
+                            $title       = get_sub_field('home_practice_area_title');
+                            $description = get_sub_field('home_practice_area_description');
+                            ?>
+
+                            <div class="home-practice-area-item <?php echo esc_attr($practice_class); ?>">
+
+                                <?php if ($image_url) : ?>
+                                    <div class="practice-img">
+                                        <img src="<?php echo esc_url($image_url); ?>"
+                                            alt="<?php echo esc_attr($title); ?>">
+                                    </div>
+                                <?php endif; ?>
+
+                                <a href="<?php echo esc_url($button_url); ?>"
+                                    target="<?php echo esc_attr($button_target); ?>"
+                                    class="practice-item-link">
+
+                                    <h3> <?php echo esc_html($title); ?> </h3>
+
+                                    <p class="practice-desc-short"> <?php echo esc_html(wp_trim_words($description, 15, ' [...]')); ?> </p>
+
+                                    <p class="practice-desc-hover">
+                                        <?php echo esc_html(wp_trim_words($description, 30, ' [...]')); ?>
+                                    </p>
+
+                                </a>
+
+                                <?php if ($button_title) : ?>
+                                    <a href="<?php echo esc_url($button_url); ?>"
+                                        target="<?php echo esc_attr($button_target); ?>"
+                                        class="practice-link">
+                                        <?php echo esc_html($button_title); ?>
+                                    </a>
+                                <?php endif; ?>
+
+                            </div>
+
+                        <?php endwhile; ?>
+
+                    </div>
+
+                    <div class="hm-pract-btn">
+                        <a href="<?php echo esc_url(home_url('/practice-areas/')); ?>"
+                            class="cmn-btn">
+                            View All Practice Areas
+                        </a>
+                    </div>
+
+                <?php endif; ?>
+
+            </div>
+
         </div>
+
     </div>
-</div>
+
+<?php endif; ?>
+
+
 
 <div class="hm-why-choose-sec">
     <div class="container">
@@ -195,8 +261,6 @@ Template Post Type: page
         <?php if (!empty($home_case_results_content['case_section_heading'])) : ?>
             <h2 class="text-heading"> <?php echo esc_html($home_case_results_content['case_section_heading']); ?> </h2>
         <?php endif; ?>
-
-
         <div class="hm-case-list">
             <?php
             $case_results = new WP_Query([
