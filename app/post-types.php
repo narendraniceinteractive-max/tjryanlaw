@@ -40,23 +40,6 @@ function register_theme_post_types() {
             'rewrite' => ['slug' => 'reviews', 'with_front' => false],
             'supports' => ['title', 'editor', 'thumbnail', 'excerpt', 'revisions'],
         ],
-        'text-review' => [
-            'labels' => [
-                'name' => 'Text Reviews',
-                'singular_name' => 'Text Review',
-                'add_new' => 'Add New',
-                'add_new_item' => 'Add New Text Review',
-                'edit_item' => 'Edit Text Review',
-                'new_item' => 'New Text Review',
-                'view_item' => 'View Text Review',
-                'search_items' => 'Search Text Reviews',
-                'not_found' => 'No text reviews found',
-                'not_found_in_trash' => 'No text reviews found in Trash',
-            ],
-            'menu_icon' => 'dashicons-format-quote',
-            'rewrite' => ['slug' => 'text-review', 'with_front' => false],
-            'supports' => ['title', 'editor', 'thumbnail', 'excerpt', 'revisions'],
-        ],
         'case_result' => [
             'labels' => [
                 'name' => 'Case Results',

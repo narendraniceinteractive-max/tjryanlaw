@@ -9,7 +9,18 @@ if (! process.env.APP_URL) {
 }
 
 export default defineConfig({
-  base: '/app/themes/sage/public/build/',
+  base: '/app/themes/tjryanlaw/public/build/',
+  server: {
+    host: '127.0.0.1',
+    port: 5173,
+    cors: {
+      origin: 'http://tjryanlaw-new.local',
+    },
+    watch: {
+      usePolling: true,
+      interval: 1000,
+    },
+  },
   plugins: [
     tailwindcss(),
     laravel({
