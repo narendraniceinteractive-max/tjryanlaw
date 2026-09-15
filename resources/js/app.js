@@ -372,60 +372,45 @@ jQuery(document).ready(function ($) {
 });
  
 
-// jQuery('.hm-testi-list').owlCarousel({
-//     loop: true,
-//     touchDrag: true,
-//     mouseDrag: true,
-//     nav: true,
-//     dots: false,
-//     items: 3,
-//     margin: 60,
-//     autoplay: true,
- 
-//     responsive: {
-//         0: {
-//             items: 1,
-//             margin: 20
-//         },
-//         768: {
-//             items: 2,
-//             margin: 20
-//         },
-//         992: {
-//             items: 3,
-//             margin: 20
-//         },
-//         1600: {
-//             items: 3,
-//             margin: 40
-//         },
-//         1601: {
-//             items: 3,
-//             margin: 60
-//         }
-//     }
-// });
- 
-
 jQuery('.hm-testi-list').owlCarousel({
     loop: true,
     touchDrag: true,
     mouseDrag: true,
     nav: true,
     dots: false,
-    items: 1,
-    margin: 0,
-    center: true,
-    stagePadding: 510,
+    items: 3,
+    margin: 28,
     autoplay: true,
+ 
     responsive: {
-        0: { items: 1, margin: 20, stagePadding: 0 },
-        768: { items: 1, margin: 20, stagePadding: 100 },
-        992: { items: 1, margin: 20, stagePadding: 250 },
-        1600: { items: 1, margin: 40, stagePadding: 450 },
-        1601: { items: 1, margin: 40, stagePadding: 510 }
+        0: { items: 1, margin: 20 },
+        768: { items: 2, margin: 20 },
+        992: { items: 3, margin: 20 },
+        1600: { items: 3, margin: 24 },
+        1601: { items: 3, margin: 28 }
     }
 });
+ 
+
+// jQuery('.hm-testi-list').owlCarousel({
+//     loop: true,
+//     touchDrag: true,
+//     mouseDrag: true,
+//     nav: true,
+//     dots: false,
+//     items: 1,
+//     margin: 0,
+//     center: true,
+//     stagePadding: 510,
+//     autoplay: true,
+//     responsive: {
+//         0: { items: 1, margin: 20, stagePadding: 0 },
+//         768: { items: 1, margin: 20, stagePadding: 100 },
+//         992: { items: 1, margin: 20, stagePadding: 250 },
+//         1600: { items: 1, margin: 40, stagePadding: 450 },
+//         1601: { items: 1, margin: 40, stagePadding: 510 }
+//     }
+// });
 
  
  /* Accordion Section */

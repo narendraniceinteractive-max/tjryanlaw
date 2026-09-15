@@ -37,22 +37,30 @@ Template Post Type: page
     </div>
 </div>
 
+
 <div class="hm-awards-sec">
     <div class="container">
         <div class="hm-award-blk">
-            <div class="hm-award-blk-title"> <h3 class="sub-heading-title">Awards & Affiliations</h3> </div>
+            <?php
+            $awards = get_field('awards');
+            ?>
+            <?php if (!empty($awards['award_section_heading'])) : ?>
+                <h2 class="sub-text-heading">
+                    <?php echo esc_html($awards['award_section_heading']); ?>
+                </h2>
+            <?php endif; ?>
             <div class="hm-awards-menu">
                 <?php if (have_rows('award_section_content')) : ?>
-                <?php while (have_rows('award_section_content')) : the_row(); ?>
-                    <?php
-                    $award_image = get_sub_field('award_image');
-                    ?>
-                    <?php if ($award_image) : ?>
-                        <div class="hm-award">
-                            <img src="<?php echo esc_url($award_image['url']); ?>" alt="<?php echo esc_attr($award_image['alt']); ?>"  width="192" height="130" >
-                        </div>
-                    <?php endif; ?>
-                <?php endwhile; ?>
+                    <?php while (have_rows('award_section_content')) : the_row(); ?>
+                        <?php
+                        $award_image = get_sub_field('award_image');
+                        ?>
+                        <?php if ($award_image) : ?>
+                            <div class="hm-award">
+                                <img src="<?php echo esc_url($award_image['url']); ?>" alt="<?php echo esc_attr($award_image['alt']); ?>" width="<?php echo esc_attr($award_image['width']); ?>" height="<?php echo esc_attr($award_image['height']); ?>" >
+                            </div>
+                        <?php endif; ?>
+                    <?php endwhile; ?>
                 <?php endif; ?>
             </div>
         </div>
@@ -68,8 +76,15 @@ Template Post Type: page
 @endphp
 <div class="hm-testimonials" @if (!empty($testi_image['url'])) style="background-image: url('{{ esc_url($testi_image['url']) }}');" @endif >
     <div class="container">
-        <h6 class="sub-heading">Our Testimonials</h6>
-        <h2 class="text-heading">Hear From Our Clients</h2>
+        <?php
+        $home_testimonials_content = get_field('home_testimonials_content');
+        ?>
+
+        <?php if (!empty($home_testimonials_content['testi_section_heading'])) : ?>
+            <h2 class="text-heading">
+                <?php echo esc_html($home_testimonials_content['testi_section_heading']); ?>
+            </h2>
+        <?php endif; ?>
         <div class="hm-testi-list owl-carousel">
                 <?php
                 $page_reviews = new WP_Query([
@@ -101,6 +116,8 @@ Template Post Type: page
         </div>
     </div>
 </div>
+
+
 
 <div class="hm-practice-area-sec">
     <div class="container">
@@ -168,8 +185,18 @@ Template Post Type: page
 </div>
 
 <div class="hm-case-sec">
-    <div class="container">
-        <h2 class="text-heading">Results for Injured Clients</h2>
+    <div class="container1">
+        <?php
+        $home_case_results_content = get_field('home_case_results_content');
+        ?>
+        <?php if (!empty($home_case_results_content['case_section_sub_heading'])) : ?>
+            <p class="text-sub-heading"> <?php echo esc_html($home_case_results_content['case_section_sub_heading']); ?> </p>
+        <?php endif; ?>
+        <?php if (!empty($home_case_results_content['case_section_heading'])) : ?>
+            <h2 class="text-heading"> <?php echo esc_html($home_case_results_content['case_section_heading']); ?> </h2>
+        <?php endif; ?>
+
+
         <div class="hm-case-list">
             <?php
             $case_results = new WP_Query([
@@ -184,7 +211,7 @@ Template Post Type: page
                 <?php while ($case_results->have_posts()) : $case_results->the_post(); ?>
                     <div class="case-item">
                         <h3> <?php the_title(); ?> </h3>
-                        <p> <?php echo esc_html( wp_trim_words( get_the_content(), 15, '...' ) ); ?> </p>
+                        <p> <?php echo esc_html( wp_trim_words( get_the_content(), 23   , '...' ) ); ?> </p>
                     </div>
                 <?php endwhile; ?>
                 <?php wp_reset_postdata(); ?>
@@ -197,8 +224,6 @@ Template Post Type: page
         </div>
     </div>
 </div>
-
-
 
  
 
